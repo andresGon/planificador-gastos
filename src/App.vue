@@ -2,7 +2,8 @@
 import { ref, reactive } from 'vue'
 import Presupuesto from './components/Presupuesto.vue';
 import ControlPresupuesto from './components/ControlPresupuesto.vue';
-import iconoNuevoGasto from './assets/img/nuevo-gasto.svg'
+import iconoNuevoGasto from './assets/img/nuevo-gasto.svg';
+import Modal from './components/Modal.vue';
 
 
 const modal = reactive({
@@ -17,6 +18,26 @@ const definirPresupuesto = (cantidad) => {
   presupuesto.value=cantidad
   console.log(' definiendo presupuesto');
 }
+
+const mostrarModal = ()=>{
+  modal.mostrar = true
+  modal.animar = true
+}
+
+const ocultarModal = ()=>{
+  modal.mostrar = false
+  modal.animar = false
+}
+
+
+const gasto = reactive({
+    nombre: '',
+    cantidad: '',
+    categoria: '',
+    id: null,
+    fecha: Date.now()
+  })
+  
 </script>
 
 <template>
@@ -33,8 +54,21 @@ const definirPresupuesto = (cantidad) => {
     />
 
     <div class="crear-gasto">
-      <img :src="iconoNuevoGasto" alt="">
+      <img :src="iconoNuevoGasto" 
+      alt=""
+      @click="mostrarModal"
+      >
     </div>
+
+    <Modal 
+    v-if="modal.mostrar"
+    @ocultar-modal="ocultarModal"
+
+    :gasto="gasto"
+      v-model:nombre="gasto.nombre"
+              v-model:cantidad="gasto.cantidad"
+              v-model:categoria="gasto.categoria"
+    />
   </div>
  
 </template>
