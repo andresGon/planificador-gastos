@@ -34,6 +34,15 @@ watch(gastos, ()=>{
   deep:true
 })
 
+watch(modal, () =>{
+  if(!modal.mostrar){
+    // reiniciar objeto
+    reiniciarStateGasto()
+  }
+}, {
+  deep:true
+})
+
 const definirPresupuesto = (cantidad) => {
   presupuesto.value=cantidad
   disponible.value = cantidad
@@ -52,24 +61,45 @@ const ocultarModal = ()=>{
 
 
 const guardarGasto = () => {
-   gastos.value.push({
+  if(gasto.id){
+    // editando
+    const { id } = gasto
+    const i = gastos.value.findIndex((gasto => gasto.id === id))
+    gastos.value[i] = {...gasto}
+  }else{
+    // registro
+    gastos.value.push({
     ...gasto,
     id:generarId()
    })
+  }
     ocultarModal()
-    // reiniciar objeto
-   Object.assign(gasto, {
-    nombre: '',
-    cantidad: '',
-    categoria: '',
-    id: null,
-    fecha: Date.now()
-   })
-
+   reiniciarStateGasto()
   }
 
+  const reiniciarStateGasto = () => {
+     // reiniciar objeto
+      Object.assign(gasto, {
+        nombre: '',
+        cantidad: '',
+        categoria: '',
+        id: null,
+        fecha: Date.now()
+      })
+  }
 
-  
+  const seleccionarGasto = id => {
+     const gastoEditar = gastos.value.filter(gasto => gasto.id === id)[0]
+     Object.assign(gasto, gastoEditar)
+     mostrarModal()
+  }
+
+  const eliminarGasto = () =>{
+    if(confirm('Eliminar?')){
+      gastos.value = gastos.value.filter(gastoState => gastoState.id !== gasto.id)
+      ocultarModal()
+    }
+  }
 </script>
 
 <template>
@@ -92,6 +122,7 @@ const guardarGasto = () => {
           v-for="gasto in gastos"
           :key="gasto.id"
           :gasto="gasto"
+          @seleccionar-gasto="seleccionarGasto"
         />
 
       </div>
@@ -108,10 +139,14 @@ const guardarGasto = () => {
     v-if="modal.mostrar"
     @ocultar-modal="ocultarModal"
     @guardar-gasto="guardarGasto"
-    :gasto="gasto"
+    @eliminar-gasto="eliminarGasto"
+    :modal="modal"
+    :disponible="disponible"
+    :id="gasto.id"
     v-model:nombre="gasto.nombre"
     v-model:cantidad="gasto.cantidad"
     v-model:categoria="gasto.categoria"
+
     />
   </div>
  
