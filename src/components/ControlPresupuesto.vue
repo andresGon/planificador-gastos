@@ -1,5 +1,7 @@
 <script setup>
 import { formatearCantidad } from '../../helpers';
+
+defineEmits(['reset-app'])
 const props = defineProps({
     presupuesto:{
         type: Number,
@@ -20,7 +22,11 @@ const props = defineProps({
     <div class="control-presupuesto">
         <p>Control de presupuesto</p>
         <img src="../assets/img/icono_gastos.svg" alt="">
-        <button class="reset-app">
+        <button 
+        class="reset-app"
+        type="button"
+        @click="$emit('reset-app')"
+        >
             Resetar app
         </button>
 
