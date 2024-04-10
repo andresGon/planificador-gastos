@@ -32,10 +32,10 @@ const porcentaje = computed(()=>{
                         <CircleProgress 
                         :percent="porcentaje"
                         :size="180"
-                        :border-width="20"
-                        :border-bg-width="20"
-                        fill-color="#000"
-                        empty-color="#FF6A6A"
+                        :border-width="16"
+                        :border-bg-width="16"
+                        fill-color="#5e0447"
+                        empty-color="rgba(255,255,255,.5)"
                     />
                     <span>{{ porcentaje }}%</span>
                 </div>
@@ -80,7 +80,7 @@ const porcentaje = computed(()=>{
         margin: 20px auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 226px 112px;
+        grid-template-rows: auto 112px 112px;
         gap: 10px;
         .item{
             border-radius: 18px;
@@ -93,6 +93,7 @@ const porcentaje = computed(()=>{
                 border: 3px solid var(--main-color);
                 grid-column: 1/3;
                 display: flex;
+                flex-flow: column;
                 padding: 8px;
                 gap: 8px;
                 span{
@@ -115,7 +116,7 @@ const porcentaje = computed(()=>{
                         justify-content: center;
                         p{
                             margin: 0;
-                            text-align: right;
+                            text-align: center;
                             b{
                                 display: block;
                                 &:nth-child(2){
@@ -144,6 +145,7 @@ const porcentaje = computed(()=>{
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                grid-column: 1/3;
             }
             &:nth-child(3){
                 background-color: var(--main-color);
@@ -151,6 +153,7 @@ const porcentaje = computed(()=>{
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                grid-column: 1/3;
             }
             .item-value{
                 div{

@@ -190,8 +190,8 @@ const guardarGasto = () => {
 <style lang="scss">
 
 :root{
-    --main-color:#FF4545;
-    --second-color:#000;
+    --main-color:#00ff7f;
+    --second-color:#5e0447;
 }
 .crear-gasto{
   width: 24px;
@@ -204,7 +204,7 @@ const guardarGasto = () => {
 
 
 html{
-    background: #000;
+    background: var(--second-color);
     font-family: "Inter", sans-serif; 
 }
 
@@ -216,7 +216,8 @@ h2{
     height: 100vh;
     overflow: auto;
     text-align: center;
-  width: 100%;
+    width: 100%;
+    position: relative;
 }
 
 .presupuesto-home{
@@ -263,5 +264,9 @@ input[type=submit], .crear-gasto{
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 90%;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
 }
 </style>

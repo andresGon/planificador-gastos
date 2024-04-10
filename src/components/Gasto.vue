@@ -42,7 +42,7 @@ defineEmits(['seleccionar-gasto'])
                 <p class="nombre"
                 @click="$emit('seleccionar-gasto', gasto.id)"
                 > {{ gasto.nombre }}</p>
-                <p class="fecha"> <span>fecha:</span> {{  formatearFecha(gasto.fecha) }}</p>
+                <p class="fecha"> <span></span> {{  formatearFecha(gasto.fecha) }}</p>
             </div>
         </div>
         <p class="cantidad"> {{ formatearCantidad(gasto.cantidad) }}</p>
@@ -56,9 +56,9 @@ defineEmits(['seleccionar-gasto'])
 .gasto{
     display: flex;
     justify-content: center;
-    border: 1px solid #ccc;
     margin: 20px 0;
-    width: 300px;
+    width: 90%;
+    color: var(--main-color);
 }
 .contenido{
     display: flex;
