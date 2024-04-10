@@ -9,6 +9,7 @@ import Modal from './components/Modal.vue';
 import Gasto from './components/Gasto.vue';
 
 
+
 const modal = reactive({
   mostrar:false,
   animar:false
@@ -139,7 +140,6 @@ const guardarGasto = () => {
 
 <template>
   <div class="container" :class="{fijar: modal.mostrar}">
-    <h1>Planificador de gastos</h1>
     <Presupuesto
       v-if="presupuesto === 0"
       @definir-presupuesto="definirPresupuesto"
@@ -191,10 +191,11 @@ const guardarGasto = () => {
  
 </template>
 
-<style scoped>
-.container{
-  text-align: center;
-  width: 100%;
+<style >
+
+:root{
+    --main-color:#FF4545;
+    --second-color:#000;
 }
 .crear-gasto{
   width: 24px;
@@ -203,5 +204,59 @@ const guardarGasto = () => {
   display: flex;
   flex-flow: column;
   align-items: center;
+}
+
+
+html{
+    background: #000;
+    font-family: "Inter", sans-serif; 
+}
+
+h2{
+    color: var(--main-color);   
+}
+
+.container{
+    height: 100vh;
+    overflow: auto;
+    text-align: center;
+  width: 100%;
+}
+
+.presupuesto-home{
+    width: 100%;
+    height: 100%; 
+}
+
+input[type=number]{
+    border: 3px solid var(--main-color);
+    width: 100%;
+    height: 50px;
+    border-radius: 18px;
+    text-align: center;
+    background: transparent;
+    color: var(--main-color);
+    font-size: 22px;
+    outline: none;
+}
+
+input[type=number]::placeholder {
+color: var(--main-color);
+opacity: .6; /* Firefox */
+}
+
+
+input[type=submit]{
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 18px;
+    text-align: center;
+    background: var(--main-color);
+    color: var(--second-color);
+    font-size: 22px;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
 }
 </style>
