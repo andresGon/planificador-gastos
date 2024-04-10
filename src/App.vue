@@ -165,11 +165,7 @@ const guardarGasto = () => {
         />
 
       </div>
-      <div class="crear-gasto" >
-        <img :src="iconoNuevoGasto" 
-        alt=""
-        @click="mostrarModal"
-        >
+      <div class="crear-gasto" @click="mostrarModal"> Nuevo Gasto
       </div>
     </div>
     
@@ -191,7 +187,7 @@ const guardarGasto = () => {
  
 </template>
 
-<style >
+<style lang="scss">
 
 :root{
     --main-color:#FF4545;
@@ -226,6 +222,10 @@ h2{
 .presupuesto-home{
     width: 100%;
     height: 100%; 
+    form{
+      margin-top: 16px;
+      gap: 16px;
+    }
 }
 
 input[type=number]{
@@ -246,7 +246,7 @@ opacity: .6; /* Firefox */
 }
 
 
-input[type=submit]{
+input[type=submit], .crear-gasto{
     width: 100%;
     height: 50px;
     border: none;
@@ -258,5 +258,10 @@ input[type=submit]{
     outline: none;
     font-size: 18px;
     font-weight: bold;
+}
+.crear-gasto{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

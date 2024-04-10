@@ -27,7 +27,7 @@ const definirPresupuesto = ()=>{
         <form
             @submit.prevent="definirPresupuesto"
         >
-            <label for="nuevo-presupuesto">Escribe un presupuesto</label>
+            <!-- <label for="nuevo-presupuesto">Nuevo presupuesto</label> -->
             <input 
             id="nuevo-presupuesto"
             placeholder="Añade un presupuesto"
@@ -35,7 +35,7 @@ const definirPresupuesto = ()=>{
             min="0"
             v-model.number="presupuesto"
             >
-            <input type="submit" value="Establecer presupueto">
+            <input type="submit" value="Nuevo presupueto">
         </form>
     </div>
 </template>
@@ -60,7 +60,5 @@ form{
 h2{
     margin: 0;
 }
-input[type=submit]{
-    margin-top: 2rem;
-}
+
 </style>
