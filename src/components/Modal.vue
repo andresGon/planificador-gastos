@@ -153,7 +153,7 @@ const isEditing = computed (()=>{
 
 <style lang="scss" scoped>
 .modal{
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;

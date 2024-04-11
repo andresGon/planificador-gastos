@@ -171,17 +171,16 @@ const guardarGasto = () => {
     
 
     <Modal 
-    v-if="modal.mostrar"
-    @ocultar-modal="ocultarModal"
-    @guardar-gasto="guardarGasto"
-    @eliminar-gasto="eliminarGasto"
-    :modal="modal"
-    :disponible="disponible"
-    :id="gasto.id"
-    v-model:nombre="gasto.nombre"
-    v-model:cantidad="gasto.cantidad"
-    v-model:categoria="gasto.categoria"
-
+      v-if="modal.mostrar"
+      @ocultar-modal="ocultarModal"
+      @guardar-gasto="guardarGasto"
+      @eliminar-gasto="eliminarGasto"
+      :modal="modal"
+      :disponible="disponible"
+      :id="gasto.id"
+      v-model:nombre="gasto.nombre"
+      v-model:cantidad="gasto.cantidad"
+      v-model:categoria="gasto.categoria"
     />
   </div>
  
@@ -200,6 +199,8 @@ const guardarGasto = () => {
   display: flex;
   flex-flow: column;
   align-items: center;
+  gap: 26px;
+  padding: 0 0 120px 0;
 }
 
 
@@ -265,7 +266,7 @@ input[type=submit], .crear-gasto{
   align-items: center;
   justify-content: center;
   width: 90%;
-  position: absolute;
+  position: fixed;
   bottom: 5%;
   left: 5%;
 }
