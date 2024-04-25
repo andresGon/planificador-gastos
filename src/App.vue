@@ -230,9 +230,11 @@ h2{
     }
 }
 
-input[type=number]{
+input[type=number],
+input[type=text],
+select{
     border: 3px solid var(--main-color);
-    width: 100%;
+    width: calc(100% - 6px);
     height: 50px;
     border-radius: 18px;
     text-align: center;
@@ -242,9 +244,9 @@ input[type=number]{
     outline: none;
 }
 
-input[type=number]::placeholder {
+input[type=number]::placeholder,
+input[type=text]::placeholder {
 color: var(--main-color);
-opacity: .6; /* Firefox */
 }
 
 

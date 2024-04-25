@@ -84,15 +84,16 @@ const isEditing = computed (()=>{
 </script>
 <template>
     <div class="modal">
-        <p>{{ isEditing ? 'Guardar Cambios' : 'Añadir gasto' }}</p>
-        <div class="cerrar-modal"
         
-        >
-            <img
-                :src="cerrarModal"
-                @click="$emit('ocultar-modal')"
-            />
-        </div>
+
+        <div class="modal-inner">
+
+            <div class="modal-cerrar">
+                <img :src="cerrarModal" @click="$emit('ocultar-modal')"/>
+            </div> 
+             
+        <!-- <p>{{ isEditing ? 'Guardar Cambios' : 'Añadir gasto' }}</p> -->
+        
 
         <form  @submit.prevent="agregarGasto">
             <Alerta v-if="error">{{error}}</Alerta>
@@ -112,7 +113,7 @@ const isEditing = computed (()=>{
                 <label for="cantidad">Cantidad:</label>
                 <input  type="number"
                         id="cantidad"
-                        placeholder="Añade la cantidad del Gasto, ej. 300"
+                        placeholder="Añade la cantidad"
                         :value="cantidad"
                         @input="$emit('update:cantidad', +$event.target.value)"
                         >
@@ -149,6 +150,7 @@ const isEditing = computed (()=>{
             Eliminar gasto
         </button>
     </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -158,7 +160,7 @@ const isEditing = computed (()=>{
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.4);
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -167,11 +169,46 @@ const isEditing = computed (()=>{
         flex-flow: column;
         max-width: 500px;
     }
-    p, label{
+    p{
         color: #fff;
     }
+    &-inner{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: calc(100% - 40px);
+        padding: 20px 5%;
+        background: var(--second-color);
+        border-top-left-radius: 28px;
+        border-top-right-radius: 28px;
+    }
+    &-cerrar{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: -15%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--main-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 50%;
+        }
+    }
 }
-.cerrar-modal{
-    width: 20px;
+label{
+    margin: 8px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--main-color);
+}
+select{
+    margin: 0 0 20px 0;
+    width: 100%;
 }
 </style>
