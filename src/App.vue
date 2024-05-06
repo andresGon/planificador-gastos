@@ -170,18 +170,24 @@ const guardarGasto = () => {
     </div>
     
 
-    <Modal 
-      v-if="modal.mostrar"
-      @ocultar-modal="ocultarModal"
-      @guardar-gasto="guardarGasto"
-      @eliminar-gasto="eliminarGasto"
-      :modal="modal"
-      :disponible="disponible"
-      :id="gasto.id"
-      v-model:nombre="gasto.nombre"
-      v-model:cantidad="gasto.cantidad"
-      v-model:categoria="gasto.categoria"
-    />
+    <transition 
+    enter-active-class="fade-in"
+    leave-active-class="slideOutDown"
+    >
+      <Modal 
+        v-if="modal.mostrar"
+        @ocultar-modal="ocultarModal"
+        @guardar-gasto="guardarGasto"
+        @eliminar-gasto="eliminarGasto"
+        :modal="modal"
+        :disponible="disponible"
+        :id="gasto.id"
+        v-model:nombre="gasto.nombre"
+        v-model:cantidad="gasto.cantidad"
+        v-model:categoria="gasto.categoria"
+      />
+    </transition>
+
   </div>
  
 </template>
@@ -272,4 +278,39 @@ input[type=submit], .crear-gasto{
   bottom: 5%;
   left: 5%;
 }
+
+.fade-in{
+  animation-name: fadeIn;
+  animation-duration: .3s;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+@keyframes slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.slideOutDown {
+  animation-name: slideOutDown;
+  animation-duration: .3s;
+}
+
+
 </style>

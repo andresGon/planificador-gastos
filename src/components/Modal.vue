@@ -87,9 +87,30 @@ const isEditing = computed (()=>{
         
 
         <div class="modal-inner">
+            <button 
+                type="button" 
+                class="btn-eliminar"
+                v-if="isEditing"
+                @click="$emit('eliminar-gasto')"
+                >
+                
+                <span>
+                    Eliminar Gasto
+                </span>
+                
+            </button>
 
-            <div class="modal-cerrar">
-                <img :src="cerrarModal" @click="$emit('ocultar-modal')"/>
+            <div class="modal-cerrar" @click="$emit('ocultar-modal')">
+                <svg 
+                    id="Capa_1" 
+                    data-name="Capa 1" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 259.43 259.21">
+                    <defs>
+                    </defs>
+                    <rect class="cls-1" x="165" y="52" width="71" height="295" transform="translate(129.32 -153.04) rotate(45)"/>
+                    <rect class="cls-1" x="164.37" y="51.59" width="71" height="295" transform="translate(-152.71 129.95) rotate(-45)"/>
+                </svg>
             </div> 
              
         <!-- <p>{{ isEditing ? 'Guardar Cambios' : 'Añadir gasto' }}</p> -->
@@ -141,14 +162,7 @@ const isEditing = computed (()=>{
                 :value="[isEditing ? 'Guardar Cambios' : 'Añadir Gasto' ]"
                 >
         </form>
-        <button 
-            type="button" 
-            class="btn-eliminar"
-            v-if="isEditing"
-            @click="$emit('eliminar-gasto')"
-            >
-            Eliminar gasto
-        </button>
+        
     </div>
     </div>
 </template>
@@ -194,7 +208,7 @@ const isEditing = computed (()=>{
         display: flex;
         align-items: center;
         justify-content: center;
-        img{
+        svg{
             width: 50%;
         }
     }
@@ -210,5 +224,27 @@ label{
 select{
     margin: 0 0 20px 0;
     width: 100%;
+}
+
+.cls-1{
+    fill:var(--second-color);
+}
+.btn-eliminar{
+    background: none;
+    color: var(--main-color);
+    border: none;
+    font-size: .8rem;
+    display: flex;
+    margin: auto;
+    margin-right: 0;
+    text-decoration: underline;
+    svg{
+        margin-top: -2px;
+    }
+}
+.icon-trash{
+    path{
+        fill: var(--main-color);
+    }
 }
 </style>
